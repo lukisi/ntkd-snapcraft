@@ -80,7 +80,7 @@ parts:
       - bash
 
 apps:
-  qspnclient:
+  ntkd:
     command: bin/ntkd
   bash:
     command: bin/bash
