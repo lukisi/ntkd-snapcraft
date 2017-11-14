@@ -74,14 +74,8 @@ parts:
       - libgee-0.8-dev
       - libjson-glib-1.0-0
       - libjson-glib-dev
-  bash:
-    plugin: nil
-    stage-packages:
-      - bash
 
 apps:
   ntkd:
     command: bin/ntkd
-  bash:
-    command: bin/bash
 
