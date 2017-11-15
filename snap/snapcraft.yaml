@@ -16,64 +16,64 @@ parts:
     plugin: autotools
     build-packages:
       - valac
+      - libgee-0.8-dev
     stage-packages:
       - libgee-0.8-2
-      - libgee-0.8-dev
   pth-tasklet:
     source: https://github.com/lukisi/pth-tasklet.git
     after: [tasklet-system]
     plugin: autotools
     build-packages:
       - valac
+      - libgee-0.8-dev
+      - libpth-dev
     stage-packages:
       - libgee-0.8-2
-      - libgee-0.8-dev
       - libpth20
-      - libpth-dev
   zcd:
     source: https://github.com/lukisi/zcd.git
     after: [tasklet-system, pth-tasklet]
     plugin: autotools
     build-packages:
       - valac
+      - libgee-0.8-dev
+      - libjson-glib-dev
     stage-packages:
       - libgee-0.8-2
-      - libgee-0.8-dev
       - libjson-glib-1.0-0
-      - libjson-glib-dev
   ntkdrpc:
     source: https://github.com/lukisi/ntkdrpc.git
     after: [tasklet-system, zcd]
     plugin: autotools
     build-packages:
       - valac
+      - libgee-0.8-dev
+      - libjson-glib-dev
     stage-packages:
       - libgee-0.8-2
-      - libgee-0.8-dev
       - libjson-glib-1.0-0
-      - libjson-glib-dev
   peerservices:
     source: https://github.com/lukisi/peerservices.git
     after: [tasklet-system, pth-tasklet, ntkd-common, ntkdrpc]
     plugin: autotools
     build-packages:
       - valac
+      - libgee-0.8-dev
+      - libjson-glib-dev
     stage-packages:
       - libgee-0.8-2
-      - libgee-0.8-dev
       - libjson-glib-1.0-0
-      - libjson-glib-dev
   ntkd:
     source: https://github.com/lukisi/ntkd.git
     after: [tasklet-system, pth-tasklet, ntkd-common, ntkdrpc, peerservices]
     plugin: autotools
     build-packages:
       - valac
+      - libgee-0.8-dev
+      - libjson-glib-dev
     stage-packages:
       - libgee-0.8-2
-      - libgee-0.8-dev
       - libjson-glib-1.0-0
-      - libjson-glib-dev
 
 apps:
   ntkd:
