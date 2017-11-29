@@ -76,6 +76,8 @@ parts:
       - libjson-glib-1.0-0
 
 apps:
+  ntkd-tester-01:
+    command: bin/ntkd_tester_01
   ntkd:
     command: bin/ntkd
     aliases: [ntkd]
