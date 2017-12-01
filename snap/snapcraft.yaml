@@ -6,102 +6,108 @@ grade: devel
 confinement: devmode
 
 parts:
-  vala:
+  valac:
     source: https://anonscm.debian.org/git/pkg-vala/vala.git
     source-branch: debian/0.36.6-1
     plugin: autotools
     build-packages:
+      - pkg-config
       - flex
       - bison
+      - libglib2.0-dev
+      - libgraphviz-dev
+      - valac
+    install: |
+      ./configure --prefix=/usr
+      make
+      make install
     prime:
-      - -*
+      - -bin
+      - -include
+      - -lib
+      - -share
+  libgee:
+    source: https://anonscm.debian.org/git/pkg-vala/libgee.git
+    source-branch: debian/0.20.0-1
+    after: [valac]
+    plugin: autotools
+    install: |
+      ./configure --prefix=/usr
+      make
+      make install
+    prime:
+      - -include
+      - -lib/pkgconfig
+      - -share/vala/vapi
   ntkd-common:
     source: https://github.com/lukisi/ntkd-common.git
-    after: [vala]
+    after: [libgee]
     plugin: autotools
     prime:
       - -include
       - -lib/pkgconfig
+      - -lib/lib*.a
       - -share/vala/vapi
   tasklet-system:
     source: https://github.com/lukisi/tasklet-system.git
-    after: [vala]
+    after: [ntkd-common]
     plugin: autotools
-    build-packages:
-      - libgee-0.8-dev
-    stage-packages:
-      - libgee-0.8-2
     prime:
       - -include
       - -lib/pkgconfig
+      - -lib/lib*.a
       - -share/vala/vapi
   pth-tasklet:
     source: https://github.com/lukisi/pth-tasklet.git
-    after: [vala, tasklet-system]
+    after: [tasklet-system]
     plugin: autotools
     build-packages:
-      - libgee-0.8-dev
       - libpth-dev
     stage-packages:
-      - libgee-0.8-2
       - libpth20
     prime:
       - -include
       - -lib/pkgconfig
+      - -lib/lib*.a
       - -share/vala/vapi
+      - -usr/share/doc
   zcd:
     source: https://github.com/lukisi/zcd.git
-    after: [vala, tasklet-system, pth-tasklet]
+    after: [pth-tasklet]
     plugin: autotools
     build-packages:
-      - libgee-0.8-dev
       - libjson-glib-dev
     stage-packages:
-      - libgee-0.8-2
       - libjson-glib-1.0-0
     prime:
-      - -bin/rpcdesign
+      - -bin
       - -include
       - -lib/pkgconfig
+      - -lib/lib*.a
       - -share/vala/vapi
+      - -usr/share/doc
   ntkdrpc:
     source: https://github.com/lukisi/ntkdrpc.git
-    after: [vala, tasklet-system, zcd]
+    after: [zcd]
     plugin: autotools
-    build-packages:
-      - libgee-0.8-dev
-      - libjson-glib-dev
-    stage-packages:
-      - libgee-0.8-2
-      - libjson-glib-1.0-0
     prime:
       - -include
       - -lib/pkgconfig
+      - -lib/lib*.a
       - -share/vala/vapi
   peerservices:
     source: https://github.com/lukisi/peerservices.git
-    after: [vala, tasklet-system, pth-tasklet, ntkd-common, ntkdrpc]
+    after: [ntkdrpc]
     plugin: autotools
-    build-packages:
-      - libgee-0.8-dev
-      - libjson-glib-dev
-    stage-packages:
-      - libgee-0.8-2
-      - libjson-glib-1.0-0
     prime:
       - -include
       - -lib/pkgconfig
+      - -lib/lib*.a
       - -share/vala/vapi
   ntkd:
     source: https://github.com/lukisi/ntkd.git
-    after: [vala, tasklet-system, pth-tasklet, ntkd-common, ntkdrpc, peerservices]
+    after: [peerservices]
     plugin: autotools
-    build-packages:
-      - libgee-0.8-dev
-      - libjson-glib-dev
-    stage-packages:
-      - libgee-0.8-2
-      - libjson-glib-1.0-0
 
 apps:
   ntkd-tester-01:
