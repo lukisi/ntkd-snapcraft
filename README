@@ -1,3 +1,4 @@
 Part of Netsukuku.
 
 Package as a snap.
+Use with "snapcraft cleanbuild".
