@@ -112,6 +112,8 @@ parts:
 apps:
   ntkd-tester-01:
     command: bin/ntkd_tester_01
+  ntkd-tester-02:
+    command: bin/ntkd_tester_02
   ntkd:
     command: bin/ntkd
     aliases: [ntkd]
