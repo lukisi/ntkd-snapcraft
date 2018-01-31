@@ -110,11 +110,12 @@ parts:
     plugin: autotools
 
 apps:
-  ntkd-tester-01:
+  tester-01:
     command: bin/ntkd_tester_01
-  ntkd-tester-02:
+  tester-02:
     command: bin/ntkd_tester_02
+  cleaning:
+    command: bin/ntkd_cleaning
   ntkd:
     command: bin/ntkd
-    aliases: [ntkd]
 
