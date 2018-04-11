@@ -114,6 +114,10 @@ apps:
     command: bin/ntkd_tester_01
   tester-02:
     command: bin/ntkd_tester_02
+  tester-03:
+    command: bin/ntkd_tester_03
+  tester-05:
+    command: bin/ntkd_tester_05
   cleaning:
     command: bin/ntkd_cleaning
   ntkd:
